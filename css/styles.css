@@ -1,0 +1,152 @@
+html {
+	font-size: 62.5%;
+}
+
+/* mobile first css */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+    background-color: #192f5e;
+}
+
+/*Step One - styling the default or generic state of the navigation - Mobile first*/
+header {
+	background-color: #fff; /*tomporary while building*/
+	padding: 2%;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: block; /*allows the clickable area to fill the container "li" (full width and height)*/
+
+}
+
+
+.menu a:hover,
+.menu a:active {
+    background-color: gainsboro;
+    border-radius: 4px;
+}
+
+.toggle-btn {
+    border: none;
+    background-color: #fff;
+    outline: none; 
+}
+
+.toggle-btn:hover {
+    cursor: pointer; /* makes the toggle look like a piece of navigation */
+}
+
+svg rect {
+    fill: #3f3f3f; /* modifies the color of an svg */
+}
+
+.menu li {
+    line-height: 4rem; /* use the line-height to increase the height of the "li" (no need for extra padding/margins) */
+    text-align: center;
+    }
+
+header nav {
+    /* This element will overlap the main content area. This element does not have a parent container that is position relative, therefore it is positioned relative to the browser screen. */
+    position: absolute;
+    top: 5.1rem; /* the height of the closed header */
+    left: 0;
+    /* once positioned absolute - the header doesnt see it anymore so it loses its bg color - put it back */
+    background-color: rgba(255, 255, 255, 1);
+    width: 100vw;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.7s ease-in-out;
+}
+
+ul.menu {
+    padding-bottom: 1rem;
+}
+
+/* add accessibility with the focus-within state on the li's which will target the anchor tags inside - this is for tabbed navigation for screen readers */
+ul.menu li:focus-within > ul,
+u.menu li > ul:focus {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+/* This class only exists in the css file, and the js will add it swaping it with 'toggle-nav' using the classList method */
+.show-nav {
+    max-height: 20rem;
+}
+
+/* ************************* section ****************** */
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p {
+    color: #d5e294;
+    border-bottom: 2px solid #d5e294;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 1.777rem;
+}
+
+section h2,
+footer {
+    color: #fff;
+    font-size: 3.157rem;
+    margin-bottom: 2rem;
+}
+
+/*--- Footer --- */
+footer {
+    text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+/* Step Three - hide the menu */
+/* This will be the default stage.. NOTE - the display:none property cannot be transitioned */
+@media only screen and (min-width: 600px) {
+        .toggle-btn {
+            display: none;
+        }
+
+        /* We want to see the header nav again, so give it a height */
+        /* reset the position value and the width */
+        header nav {
+            position: static;
+            width: auto;
+            max-height: 20rem;
+            overflow: visible;
+        }
+
+        .menu,
+        header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu li {
+            margin-left: 0.5rem;
+        }
+
+        .menu li a {
+            padding: 0.5rem; 
+       }
+}
+
+@media only screen and (min-width: 1300px) {
+        header {
+            width: 1300px;
+            margin: 0 auto;
+        }
+    }
